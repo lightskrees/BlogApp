@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{%block content%}
+<h3>Sign Up</h3>
+    <form action="" method="post">
+
+        {%csrf_token%}
+        {{form.as_p}}
+
+        <button type="submit">Submit</button> <br>
+
+    <p>back to the <a href="{% url 'login' %}">login</a> page </p>
+
+
+    </form>
+{%endblock content%}
