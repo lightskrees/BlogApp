@@ -12,7 +12,7 @@
         <nav>
             <h1>BlogApp</h1>
             {% if user.is_authenticated %}
-                <a href="">Add a post</a><br>
+                <a href="{% url 'add_blog' %}">Add a blog</a><br>
                 <a href="{%url 'logout'%}">logout</a><br>
             {% endif %}
         </nav>
