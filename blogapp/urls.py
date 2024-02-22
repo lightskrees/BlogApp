@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from authentication.views import LoginPageView, SignupPageView, LogoutPageView
-from blog.views import HomePageView, BlogUploadView
+from blog.views import HomePageView, BlogUploadView, UserListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,5 @@ urlpatterns = [
     path('signup/', SignupPageView.as_view(), name='signup'),
     path('logout/', LogoutPageView.as_view(), name='logout'),
     path('add_blog/', BlogUploadView.as_view(), name='add_blog'),
+    path('view_users/', UserListView.as_view(), name='users_list'),
 ]
