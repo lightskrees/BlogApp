@@ -25,6 +25,9 @@ html {
     color:  #ffffe6;
     display: block;
 }
+a{
+    text-decoration: none;
+}
 
 /* When you mouse over the navigation links, change their color */
 .sidebar a:hover {

@@ -1,6 +1,7 @@
 from django.db import models
 from PIL import Image
 from authentication.models import User
+from django.conf import settings
 
 class Blog (models.Model):
     image = models.ImageField(null=True)
@@ -19,4 +20,3 @@ class Blog (models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.resize_image()

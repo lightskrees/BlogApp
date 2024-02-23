@@ -13,7 +13,11 @@
     <tr>
       <td>{{ user.username }}</td>
       <td>{{ user.role }}</td>
-      <td><a href="">View Posts</a></td>
+        {% if user.role == 'AUTHOR' %}
+      <td><a href="{% url 'blog_view' blog.id %}">View Posts</a></td>
+        {% else %}
+        <td>-------</td>
+        {% endif %}
     </tr>
     {% endfor %}
 

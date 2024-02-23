@@ -12,9 +12,15 @@
         <nav>
             <h1>BlogApp</h1>
             {% if user.is_authenticated %}
-                <a href="{% url 'add_blog' %}">Add a blog</a><br>
+                    <img class="avatar" src="D:\dev\projects\django\pythonProject\djangoProject\blogapp\media\thedude.jpg" alt="">
+                    <a href="{% url 'home' %}">Home</a><br>
+                <a href="{% url 'upload_profile' %}">Upload Profile</a><br>
+                {% if user.role == 'AUTHOR' or user.role == 'ADMIN'  %}
+                    <a href="{% url 'add_blog' %}">Add a blog</a><br>
+                {% endif %}
                 <a href="{% url 'users_list' %}">Users list</a><br>
                 <a href="{%url 'logout'%}">logout</a><br>
+
             {% endif %}
         </nav>
     </div>
