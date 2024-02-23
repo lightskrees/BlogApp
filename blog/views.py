@@ -43,6 +43,15 @@ class BlogView(View):
         return render(request, self.template_name, {'blog': blog})
 
 
+class UserBlogView(View):
+    template_name = 'blog/user_blog.html'
+
+    def get(self, request, pk):
+        user = User.objects.get(id=pk)
+        blogs = Blog.objects.filter(contributors=user)
+        return render(request, self.template_name, {'blogs': blogs})
+
+
 class UserListView(View):
     template_name = 'blog/users_list.html'
 
