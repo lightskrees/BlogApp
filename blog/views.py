@@ -4,8 +4,10 @@ from django.views.generic import View
 from authentication.models import User
 from blog.forms import BlogForm
 from blog.models import Blog
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
-
+@method_decorator(login_required, name='dispatch')
 class HomePageView(View):
     template_name = 'blog/home.html'
 
@@ -13,7 +15,7 @@ class HomePageView(View):
         blogs = Blog.objects.filter(contributors=request.user)
         return render(request, self.template_name, {'blogs': blogs})
 
-
+@method_decorator(login_required, name='dispatch')
 class BlogUploadView(View):
     template_name = 'blog/blog_add.html'
     form_class = BlogForm
@@ -34,7 +36,7 @@ class BlogUploadView(View):
 
         return render(request, self.template_name, {'form': form})
 
-
+@method_decorator(login_required, name='dispatch')
 class BlogView(View):
     template_name = 'blog/view_blog.html'
 
@@ -42,7 +44,7 @@ class BlogView(View):
         blog = Blog.objects.get(id=id)
         return render(request, self.template_name, {'blog': blog})
 
-
+@method_decorator(login_required, name='dispatch')
 class UserBlogView(View):
     template_name = 'blog/user_blog.html'
 
@@ -58,6 +60,7 @@ class GroupPostView(View):
         blogs = Blog.objects.filter(contributors__groups__in=user_groups)
         return render(request, self.template_name, {'blogs': blogs})
 
+@method_decorator(login_required, name='dispatch')
 class UserListView(View):
     template_name = 'blog/users_list.html'
 
