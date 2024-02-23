@@ -13,23 +13,30 @@ def create_groups(apps, schema_migration):
 
     add_blog = Permission.objects.get(codename='add_blog')
     change_blog = Permission.objects.get(codename='change_blog')
+    change_photo = Permission.objects.get(codename='change_photo')
     delete_blog = Permission.objects.get(codename='delete_blog')
     view_blog = Permission.objects.get(codename='view_blog')
 
-    creator_permissions = [
+    author_permissions = [
         add_blog,
         change_blog,
         delete_blog,
         view_blog,
+        change_photo
+    ]
+
+    reader_permissions = [
+        view_blog,
+        change_photo
     ]
 
     authors = Group(name='authors')
     authors.save()
-    authors.permissions.set(creator_permissions)
+    authors.permissions.set(author_permissions)
 
     readers = Group(name='readers')
     readers.save()
-    readers.permissions.add(view_blog)
+    readers.permissions.add(reader_permissions)
 
     admin = Group(name='admin')
     admin.save()

@@ -12,10 +12,10 @@
         <nav>
             <h1>BlogApp</h1>
             {% if user.is_authenticated %}
-                    <img class="avatar" src="D:\dev\projects\django\pythonProject\djangoProject\blogapp\media\thedude.jpg" alt="">
+                    <img class="avatar" src="" alt="">
                     <a href="{% url 'home' %}">Home</a><br>
                 <a href="{% url 'upload_profile' %}">Upload Profile</a><br>
-                {% if user.role == 'AUTHOR' or user.role == 'ADMIN'  %}
+                {% if perms.blog.add_blog  %}
                     <a href="{% url 'add_blog' %}">Add a blog</a><br>
                 {% endif %}
                 <a href="{% url 'users_list' %}">Users list</a><br>
