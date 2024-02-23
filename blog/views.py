@@ -50,7 +50,13 @@ class UserBlogView(View):
         user = User.objects.get(id=pk)
         blogs = Blog.objects.filter(contributors=user)
         return render(request, self.template_name, {'blogs': blogs})
+class GroupPostView(View):
+    template_name = 'blog/group_posts.html'
 
+    def get(self, request):
+        user_groups = request.user.groups.all()
+        blogs = Blog.objects.filter(contributors__groups__in=user_groups)
+        return render(request, self.template_name, {'blogs': blogs})
 
 class UserListView(View):
     template_name = 'blog/users_list.html'

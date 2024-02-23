@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path
 from authentication.views import LoginPageView, SignupPageView, LogoutPageView, UploadProfileView
-from blog.views import HomePageView, BlogUploadView, UserListView, BlogView, UserBlogView
+from blog.views import HomePageView, BlogUploadView, UserListView, BlogView, UserBlogView, GroupPostView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,7 +31,8 @@ urlpatterns = [
     path('add_blog/', BlogUploadView.as_view(), name='add_blog'),
     path('view_users/', UserListView.as_view(), name='users_list'),
     path('upload_profile/', UploadProfileView.as_view(), name='upload_profile'),
-    path('user_posts/<int:pk>/', UserBlogView.as_view(), name='user_blog')
+    path('user_posts/<int:pk>/', UserBlogView.as_view(), name='user_blog'),
+    path('group_post/', GroupPostView.as_view(), name='group_post')
 ]
 if settings.DEBUG:
     urlpatterns += static(

@@ -1,12 +1,15 @@
 {%extends 'base.html'%}
 {%block content%}
-    {% for blog in blogs %}
+
+    <div class="grid-container">
+         {% for blog in blogs %}
         <a href="{% url 'blog_view' blog.id %}">
             <h1> {{ blog.title }}</h1>
-        <img src="{{ blog.image.url }}">
+        <img src="{{ blog.image.url }}" alt="Blog Image">
         <p> {{ blog.caption }}</p>
         </a>
 
     {% endfor %}
+    </div>
 
 {%endblock%}
