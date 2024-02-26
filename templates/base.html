@@ -12,6 +12,7 @@
         <nav>
             <h1>BlogApp</h1>
             {% if user.is_authenticated %}
+                    <p>hey, {{ request.user }}</p>
                     <img class="avatar" src="" alt="">
                     <a href="{% url 'home' %}">Home</a><br>
                 <a href="{% url 'upload_profile' %}">Upload Profile</a><br>

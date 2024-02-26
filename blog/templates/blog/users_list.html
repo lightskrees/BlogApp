@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+    <h1> Users List</h1>
     <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -10,6 +11,7 @@
   </thead>
   <tbody>
     {% for user in users %}
+        {% if user != request.user %}
     <tr>
       <td>{{ user.username }}</td>
       {% if user.role == 'AUTHOR' or user.role == 'READER' %}
@@ -23,6 +25,7 @@
         <td>-------</td>
         {% endif %}
     </tr>
+        {% endif %}
     {% endfor %}
 
   </tbody>

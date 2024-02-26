@@ -1,9 +1,10 @@
 {%extends 'base.html'%}
 {%block content%}
-
+{% if blogs %}
+    <h2>FEED</h2>
+    {% endif %}
     <div class="grid-container">
         {% if blogs %}
-            <h2>FEED</h2>
             {% for blog in blogs %}
             <a href="{% url 'blog_view' blog.id %}">
                 <h1> {{ blog.title }}</h1>

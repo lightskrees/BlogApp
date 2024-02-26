@@ -17,9 +17,18 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+from api.views import BlogViewSet, UserViewSet
 from authentication.views import LoginPageView, SignupPageView, LogoutPageView, UploadProfileView
 from blog.views import HomePageView, BlogUploadView, UserListView, BlogView, UserBlogView, GroupPostView
+
+router = routers.SimpleRouter()
+
+router.register('blog', BlogViewSet, basename='category')
+router.register('user', UserViewSet, basename='user')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,7 +41,12 @@ urlpatterns = [
     path('view_users/', UserListView.as_view(), name='users_list'),
     path('upload_profile/', UploadProfileView.as_view(), name='upload_profile'),
     path('user_posts/<int:pk>/', UserBlogView.as_view(), name='user_blog'),
-    path('group_post/', GroupPostView.as_view(), name='group_post')
+    path('group_post/', GroupPostView.as_view(), name='group_post'),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/', include(router.urls)),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(

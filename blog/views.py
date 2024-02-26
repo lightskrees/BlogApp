@@ -12,8 +12,15 @@ class HomePageView(View):
     template_name = 'blog/home.html'
 
     def get(self, request):
-        blogs = Blog.objects.filter(contributors=request.user)
-        return render(request, self.template_name, {'blogs': blogs})
+        if request.user.role == User.AUTHOR:
+            blogs = Blog.objects.filter(contributors=request.user)
+            return render(request, self.template_name, {'blogs': blogs})
+
+        else:
+            group_name = 'authors'
+            blogs = Blog.objects.filter(contributors__groups__name=group_name)
+            return render(request, self.template_name, {'blogs': blogs})
+
 
 @method_decorator(login_required, name='dispatch')
 class BlogUploadView(View):
