@@ -60,9 +60,9 @@ a{
 
 .avatar {
     width: 80%;
-    border-radius: 10%;
+    border-radius: 50%;
     display: block;
-    margin: auto;
+    margin-left: auto;
     padding-top: 10px;
     padding-bottom: 10px;
 }
